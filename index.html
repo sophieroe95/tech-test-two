@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <h1>Wasp Game</h1>
+    <p>Rules: click button to hit a random wasp, drones start on 60 points and lose 10 each time hit, workers start on 68, lose 10 with each hit, queen starts on 80 and loses 7 points each time is hit, you win the game when the queen has 0 points, how quickly
+        can you beat the nest?!</p>
+    <p id="1" class="bee">queen 80</p>
+    <p id="2" class="bee">worker 68</p>
+    <p id="3" class="bee">worker 68</p>
+    <p id="4" class="bee">worker 68</p>
+    <p id="5" class="bee">worker 68</p>
+    <p id="6" class="bee">worker 68</p>
+    <p id="7" class="bee">drone 60</p>
+    <p id="8" class="bee">drone 60</p>
+    <p id="9" class="bee">drone 60</p>
+    <p id="10" class="bee">drone 60</p>
+    <p id="11" class="bee">drone 60</p>
+    <p id="12" class="bee">drone 60</p>
+    <p id="13" class="bee">drone 60</p>
+    <p id="14" class="bee">drone 60</p>
+    <button class="waspButton">hit random wasp</button>
+    <script>
+        const waspButton = document.querySelector('.waspButton');
+        let queenclicks = 0;
+        let workerclicks = 0;
+        let droneclicks = 0;
+        waspButton.addEventListener('click', () => {
+            console.log(droneclicks)
+            let randomNumber = Math.floor(Math.random() * 14) + 1;
+            console.log(randomNumber);
+            if (randomNumber === 1) {
+                queenclicks += 1;
+                console.log(queenclicks)
+                let totalqueen = 80 - (queenclicks * 7)
+
+                if (totalqueen <= 0) {
+                    document.querySelector(".bee").innerHTML = "game over queens died!";
+                    alert("game over queens died!");
+                    location.reload();
+                } else {
+                    document.getElementById(randomNumber).innerHTML = "queen " + totalqueen;
+                }
+            } else if (randomNumber < 7) {
+                workerclicks += 1;
+                let total = 68 - (workerclicks * 10)
+                if (total <= 0) {
+                    document.getElementById(randomNumber).innerHTML = "died!";
+                    randomNumber = null;
+                } else {
+                    document.getElementById(randomNumber).innerHTML = "worker " + total;
+                }
+            } else {
+                droneclicks += 1;
+                let total = 60 - (droneclicks * 12)
+                if (total <= 0) {
+                    document.getElementById(randomNumber).innerHTML = "died!";
+                    randomNumber = null;
+                } else {
+                    document.getElementById(randomNumber).innerHTML = "drone " + total;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
